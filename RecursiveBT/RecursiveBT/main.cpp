@@ -68,6 +68,13 @@ public:
         return rContains(root, value);
     }
     
+    int minValue(Node* currentNode){
+        while(currentNode->left != nullptr){
+            currentNode = currentNode->left;
+        }
+        return currentNode->value;
+    }
+    
     Node* rdelete(Node* currentNode, int value){
         if (currentNode == nullptr) {
             return nullptr;
