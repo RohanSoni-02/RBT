@@ -67,8 +67,45 @@ public:
     bool rContains(int value){
         return rContains(root, value);
     }
+    
+    Node* rdelete(Node* currentNode, int value){
+        if (currentNode == nullptr) {
+            return nullptr;
+        }
+        if (value < currentNode->value) {
+            currentNode->left = rdelete(currentNode->left, value);
+        }
+        else if(value > currentNode->value){
+            currentNode->right = rdelete(currentNode->right, value);
+        }
+        else{
+            if (currentNode->left== nullptr && currentNode->right == nullptr) {
+                delete currentNode;
+                return nullptr;
+            }
+            else if (currentNode->left == nullptr) {
+                Node* temp = currentNode->right;
+                delete currentNode;
+                return temp;
+            }
+            else if (currentNode->right == nullptr) {
+                Node* temp = currentNode->left;
+                delete currentNode;
+                return temp;
+            }
+            else{
+                
+            }
+        }
+    }
+    
+    void rdelete(int value){
+        root = rdelete(root, value);
+    }
 };
 
 int main(int argc, const char * argv[]) {
-    
+    BinarySearchTree* myBST = new BinarySearchTree();
+    myBST->rInsert(2);
+    myBST->rInsert(1);
 }
