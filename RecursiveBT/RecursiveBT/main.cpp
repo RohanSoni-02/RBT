@@ -101,9 +101,12 @@ public:
                 return temp;
             }
             else{
-                
+                int subTreeMin = minValue(currentNode->right);
+                currentNode->value = subTreeMin;
+                currentNode->right = rdelete(currentNode->right, subTreeMin);
             }
         }
+        return currentNode;
     }
     
     void rdelete(int value){
