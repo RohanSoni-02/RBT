@@ -74,7 +74,7 @@ public:
     }
 
     bool rContains(int value){
-        return true;
+        return rContains(root, value);
     }
 };
 
