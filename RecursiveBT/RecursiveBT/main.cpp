@@ -29,33 +29,24 @@ public:
         root = nullptr;
     }
     
-    bool insert(int value){
-        Node* newNode = new Node(value);
+    Node* rInsert(Node* currentNode, int value){
+        if (currentNode == nullptr) {
+            return new Node(value);
+        }
+        if(value < currentNode-> value){
+            currentNode->left = rInsert(currentNode->left, value);
+        }
+        else if(value > currentNode->value){
+            currentNode->right = rInsert(currentNode->right, value);
+        }
+        return currentNode;
+    }
+    
+    void rInsert(int value){
         if(root == nullptr){
-            root = newNode;
-            return true;
+            root = new Node(value);
         }
-        Node* temp = root;
-        while (true) {
-            if (newNode->value == temp->value) {
-                return false;
-            }
-            
-            if (newNode->value < temp->value) {
-                if (temp->left == nullptr) {
-                    temp->left = newNode;
-                    return true;
-                }
-                temp = temp->left;
-            }
-            else{
-                if (temp->right == nullptr) {
-                    temp->right = newNode;
-                    return true;
-                }
-                temp = temp->right;
-            }
-        }
+        rInsert(root, value);
     }
     
     bool rContains(Node* currentNode, int value){
